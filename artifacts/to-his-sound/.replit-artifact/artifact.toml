@@ -1,0 +1,28 @@
+kind = "web"
+previewPath = "/"
+title = "To His Sound"
+description = "A dark, cinematic brand website for To His Sound, a Christian creative training center and ministering business cultivating biblically grounded creatives through discipleship, movement, leadership, and spiritual formation."
+version = "1.0.0"
+id = "artifacts/to-his-sound"
+router = "path"
+
+[[services]]
+name = "web"
+paths = [ "/" ]
+localPort = 25232
+
+[services.development]
+run = "pnpm --filter @workspace/to-his-sound run dev"
+
+[services.production]
+build = [ "pnpm", "--filter", "@workspace/to-his-sound", "run", "build" ]
+serve = "static"
+publicDir = "artifacts/to-his-sound/dist/public"
+
+[[services.production.rewrites]]
+from = "/*"
+to = "/index.html"
+
+[services.env]
+PORT = "25232"
+BASE_PATH = "/"
