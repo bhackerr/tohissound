@@ -1,6 +1,6 @@
 import { type ReactNode, useEffect, useState } from 'react';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import { ArrowDownRight, ArrowUpRight, ChevronRight, Circle, Facebook, Instagram, Menu, MoveUpRight, X, Youtube } from 'lucide-react';
+import { ArrowDownRight, ArrowUpRight, ChevronRight, Circle, Facebook, Instagram, Menu, MoveUpRight, X } from 'lucide-react';
 import { ErrorBoundary } from '@/components/error-boundary';
 import { Toaster } from '@/components/ui/toaster';
 import { TooltipProvider } from '@/components/ui/tooltip';
@@ -310,7 +310,6 @@ function SocialSection() {
   const socials = [
     { label: 'Instagram', href: 'https://www.instagram.com/', icon: Instagram },
     { label: 'Facebook', href: 'https://www.facebook.com/', icon: Facebook },
-    { label: 'YouTube', href: 'https://www.youtube.com/', icon: Youtube },
   ];
   return (
     <section id="connect" className="section-pad bg-[hsl(29_20%_9%)]">
