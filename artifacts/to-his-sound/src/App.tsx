@@ -7,6 +7,9 @@ import { TooltipProvider } from '@/components/ui/tooltip';
 import NotFound from '@/pages/not-found';
 import { Route, Switch, useLocation, Router as WouterRouter } from 'wouter';
 import logoPath from '@assets/2DFE0C36-0185-4AFC-B451-013994104BDE_1787522511704.jpeg';
+import warmPortraitPath from '@assets/2755A009-CDAA-4C82-A947-16A74A1D507B_1789759859525.png';
+import intimatePortraitPath from '@assets/F0F98264-4E36-493B-8F32-DB9BC76C3CF1_1789759859525.png';
+import movementPath from '@assets/IMG_0150_1789759859525.jpeg';
 
 const queryClient = new QueryClient();
 
@@ -157,6 +160,26 @@ function WhySection() {
           </div>
         </div>
       </div>
+      <div className="mx-auto mt-20 grid max-w-[1240px] gap-8 border-t border-[hsl(var(--border))] pt-8 md:grid-cols-[.83fr_1.17fr] md:items-end md:gap-14">
+        <figure className="editorial-frame group relative overflow-hidden bg-[hsl(var(--card))]">
+          <img
+            src={warmPortraitPath}
+            alt="Portrait in a black blazer and glasses against a warm neutral studio backdrop."
+            className="brand-photo h-[28rem] w-full object-cover object-[center_24%] transition-transform duration-700 ease-out group-hover:scale-[1.025] sm:h-[34rem]"
+            data-testid="img-portrait-studio"
+          />
+          <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-[hsl(var(--background)/.58)] via-transparent to-transparent" />
+          <figcaption className="absolute inset-x-5 bottom-5 flex items-end justify-between gap-4">
+            <span className="eyebrow text-[hsl(var(--foreground)/.78)]">Presence before performance</span>
+            <span className="font-mono text-[.58rem] uppercase tracking-[.16em] text-[hsl(var(--foreground)/.5)]">01</span>
+          </figcaption>
+        </figure>
+        <div className="max-w-[25rem] pb-1">
+          <p className="eyebrow">A human beginning</p>
+          <p className="serif mt-5 text-3xl leading-[1.08] text-[hsl(var(--foreground)/.86)]">The work asks for attention before it asks for an audience.</p>
+          <p className="mt-5 text-sm leading-7 text-[hsl(var(--foreground)/.52)]">Room to notice what is stirring, what is honest, and what is ready to be offered.</p>
+        </div>
+      </div>
     </section>
   );
 }
@@ -172,6 +195,19 @@ function OriginSection() {
           <h2 className="display -mt-4 max-w-[32rem] text-5xl leading-none sm:text-6xl" data-testid="text-origin-title">A phrase in motion became a place to <em className="gold-text">belong.</em></h2>
         </div>
         <div className="border-l border-[hsl(var(--primary)/.45)] pl-7 lg:pl-12">
+          <figure className="editorial-frame group relative mb-10 overflow-hidden">
+            <img
+              src={intimatePortraitPath}
+              alt="Intimate close-up portrait with locs and glasses against a dark background."
+              className="brand-photo h-[21rem] w-full object-cover object-[center_34%] transition-transform duration-700 ease-out group-hover:scale-[1.025] sm:h-[25rem]"
+              data-testid="img-portrait-intimate"
+            />
+            <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-[hsl(29_20%_9%)/.72] via-transparent to-transparent" />
+            <figcaption className="absolute inset-x-5 bottom-5 flex items-end justify-between gap-4">
+              <span className="eyebrow text-[hsl(var(--foreground)/.72)]">Still listening</span>
+              <span className="font-mono text-[.58rem] uppercase tracking-[.16em] text-[hsl(var(--foreground)/.45)]">02</span>
+            </figcaption>
+          </figure>
           <p className="text-lg leading-8 text-[hsl(var(--foreground)/.76)]">In 2019, while commuting through Covington, Georgia, a phrase was spoken during prayer: <span className="serif text-2xl italic text-[hsl(var(--primary))]">To His Sound.</span></p>
           <p className="mt-7 text-sm leading-7 text-[hsl(var(--foreground)/.55)]">It became an invitation — to create from closeness, to lead from surrender, and to build creative spaces covered by wise community.</p>
           <div className="mt-10 flex items-center gap-3 font-mono text-[.65rem] uppercase tracking-[.15em] text-[hsl(var(--foreground)/.45)]"><Circle size={8} fill="currentColor" className="text-[hsl(var(--primary))]" /> still listening</div>
@@ -227,6 +263,31 @@ function PracticeSection() {
             ))}
           </div>
         </div>
+      </div>
+    </section>
+  );
+}
+
+function MovementSection() {
+  return (
+    <section className="border-b border-[hsl(var(--border))] bg-[hsl(29_20%_9%)] px-5 py-10 lg:px-10 lg:py-16">
+      <div className="mx-auto max-w-[1240px]">
+        <figure className="editorial-frame group relative overflow-hidden">
+          <img
+            src={movementPath}
+            alt="Movement ministry by the water: a dancer in bright blue raises flowing red-orange fabric into the air."
+            className="brand-photo h-[30rem] w-full object-cover object-[center_46%] transition-transform duration-1000 ease-out group-hover:scale-[1.018] sm:h-[39rem] lg:h-[44rem]"
+            data-testid="img-movement-ministry"
+          />
+          <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-[hsl(8_12%_7%)/.9] via-[hsl(8_12%_7%)/.08] to-transparent" />
+          <div className="absolute inset-x-6 bottom-6 flex flex-col gap-4 sm:inset-x-10 sm:bottom-10 sm:flex-row sm:items-end sm:justify-between">
+            <div>
+              <p className="eyebrow text-[hsl(var(--foreground)/.78)]">A visible offering</p>
+              <p className="serif mt-3 max-w-[28rem] text-3xl leading-[1.02] text-[hsl(var(--foreground))] sm:text-5xl">Where movement becomes obedience.</p>
+            </div>
+            <figcaption className="max-w-[14rem] border-l border-[hsl(var(--primary)/.7)] pl-4 text-xs leading-6 text-[hsl(var(--foreground)/.65)]">A body in motion, making room for what cannot stay still.</figcaption>
+          </div>
+        </figure>
       </div>
     </section>
   );
@@ -304,7 +365,7 @@ function Footer() {
 }
 
 function Home() {
-  return <div id="page" className="grain min-h-[100dvh] bg-[hsl(var(--background))] text-[hsl(var(--foreground))]"><Header /><main><Hero /><WhySection /><OriginSection /><WaysSection /><PracticeSection /><Invitation /><ContactSection /></main><Footer /></div>;
+  return <div id="page" className="grain min-h-[100dvh] bg-[hsl(var(--background))] text-[hsl(var(--foreground))]"><Header /><main><Hero /><WhySection /><OriginSection /><WaysSection /><PracticeSection /><MovementSection /><Invitation /><ContactSection /></main><Footer /></div>;
 }
 
 function Router() {

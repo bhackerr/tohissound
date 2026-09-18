@@ -111,6 +111,9 @@
 .gold-text { color: hsl(var(--primary)); }
 .hairline { height: 1px; background: hsl(var(--border)); }
 .glow-orb { background: radial-gradient(circle, hsl(var(--primary) / .15), transparent 68%); filter: blur(2px); }
+.editorial-frame { isolation: isolate; }
+.brand-photo { display: block; filter: saturate(.9) contrast(1.03); }
+.editorial-frame::after { content: ""; pointer-events: none; position: absolute; inset: 0; border: 1px solid hsl(var(--primary) / .22); opacity: .8; }
 .service-card { transition: transform .45s cubic-bezier(.2,.8,.2,1), border-color .45s ease, background-color .45s ease; }
 .service-card:hover { transform: translateY(-7px); border-color: hsl(var(--primary) / .65); background-color: hsl(10 14% 11%); }
 .arrow-link svg { transition: transform .35s ease; }
