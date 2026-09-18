@@ -1,6 +1,6 @@
-import { type FormEvent, type ReactNode, useEffect, useRef, useState } from 'react';
+import { type ReactNode, useEffect, useState } from 'react';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import { ArrowDownRight, ArrowUpRight, Check, ChevronRight, Circle, Menu, MoveUpRight, X } from 'lucide-react';
+import { ArrowDownRight, ArrowUpRight, ChevronRight, Circle, Facebook, Instagram, Menu, MoveUpRight, X, Youtube } from 'lucide-react';
 import { ErrorBoundary } from '@/components/error-boundary';
 import { Toaster } from '@/components/ui/toaster';
 import { TooltipProvider } from '@/components/ui/tooltip';
@@ -17,7 +17,7 @@ const navItems = [
   { id: 'why', label: 'The why' },
   { id: 'ways', label: 'Ways we serve' },
   { id: 'practice', label: 'The practice' },
-  { id: 'connect', label: 'Begin a conversation' },
+  { id: 'connect', label: 'Follow the sound' },
 ];
 
 function Mark({ small = false }: { small?: boolean }) {
@@ -116,7 +116,7 @@ function Hero() {
           </p>
           <div className="reveal reveal-4 mt-10 flex flex-wrap items-center gap-6">
             <button type="button" onClick={() => document.getElementById('connect')?.scrollIntoView({ behavior: 'smooth' })} className="focus-ring group flex items-center gap-3 bg-[hsl(var(--primary))] px-5 py-3.5 text-[.7rem] font-bold uppercase tracking-[.15em] text-[hsl(var(--primary-foreground))] transition-transform hover:-translate-y-1" data-testid="button-hero-connect">
-              Start a conversation <ArrowUpRight size={16} strokeWidth={1.8} />
+              Follow the sound <ArrowUpRight size={16} strokeWidth={1.8} />
             </button>
             <button type="button" onClick={() => document.getElementById('why')?.scrollIntoView({ behavior: 'smooth' })} className="focus-ring flex items-center gap-3 text-[.7rem] font-bold uppercase tracking-[.15em] text-[hsl(var(--foreground)/.72)] transition-colors hover:text-[hsl(var(--primary))]" data-testid="button-hero-explore">
               Explore the why <ArrowDownRight size={16} strokeWidth={1.8} />
@@ -241,7 +241,7 @@ function WaysSection() {
             </button>
           ))}
         </div>
-        {selected && <div className="mt-6 flex items-center justify-between border border-[hsl(var(--primary)/.45)] bg-[hsl(var(--primary)/.07)] px-5 py-4 text-sm text-[hsl(var(--foreground)/.8)]" role="status" data-testid="status-service-selection"><span>Your starting point is noted. Continue below to begin a conversation.</span><button type="button" onClick={() => document.getElementById('connect')?.scrollIntoView({ behavior: 'smooth' })} className="focus-ring ml-4 shrink-0 font-mono text-[.65rem] uppercase tracking-[.13em] text-[hsl(var(--primary))]" data-testid="button-service-continue">Continue <ChevronRight size={14} className="inline" /></button></div>}
+        {selected && <div className="mt-6 flex items-center justify-between border border-[hsl(var(--primary)/.45)] bg-[hsl(var(--primary)/.07)] px-5 py-4 text-sm text-[hsl(var(--foreground)/.8)]" role="status" data-testid="status-service-selection"><span>Your starting point is noted. Continue below to find the sound online.</span><button type="button" onClick={() => document.getElementById('connect')?.scrollIntoView({ behavior: 'smooth' })} className="focus-ring ml-4 shrink-0 font-mono text-[.65rem] uppercase tracking-[.13em] text-[hsl(var(--primary))]" data-testid="button-service-continue">Continue <ChevronRight size={14} className="inline" /></button></div>}
       </div>
     </section>
   );
@@ -300,53 +300,34 @@ function Invitation() {
       <div className="relative mx-auto max-w-[800px]">
         <p className="eyebrow">A gentle but direct invitation</p>
         <h2 className="display mt-7 text-6xl leading-[.9] sm:text-8xl" data-testid="text-invitation-title">What has God been <em className="gold-text">saying</em> in your movement?</h2>
-        <button type="button" onClick={() => document.getElementById('connect')?.scrollIntoView({ behavior: 'smooth' })} className="focus-ring mt-12 inline-flex items-center gap-3 border border-[hsl(var(--primary)/.7)] px-6 py-4 text-[.7rem] font-bold uppercase tracking-[.15em] text-[hsl(var(--primary))] transition-colors hover:bg-[hsl(var(--primary))] hover:text-[hsl(var(--primary-foreground))]" data-testid="button-invitation-connect">Bring it into the light <ArrowUpRight size={16} /></button>
+        <button type="button" onClick={() => document.getElementById('connect')?.scrollIntoView({ behavior: 'smooth' })} className="focus-ring mt-12 inline-flex items-center gap-3 border border-[hsl(var(--primary)/.7)] px-6 py-4 text-[.7rem] font-bold uppercase tracking-[.15em] text-[hsl(var(--primary))] transition-colors hover:bg-[hsl(var(--primary))] hover:text-[hsl(var(--primary-foreground))]" data-testid="button-invitation-connect">Find us on social <ArrowUpRight size={16} /></button>
       </div>
     </section>
   );
 }
 
-function ContactSection() {
-  const [submitted, setSubmitted] = useState(false);
-  const [error, setError] = useState('');
-  const formRef = useRef<HTMLFormElement>(null);
-
-  const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-    const form = new FormData(event.currentTarget);
-    const name = String(form.get('name') || '').trim();
-    const email = String(form.get('email') || '').trim();
-    const message = String(form.get('message') || '').trim();
-    if (!name || !email || !message) {
-      setError('Please share your name, email, and a little about what you are carrying.');
-      return;
-    }
-    setError('');
-    setSubmitted(true);
-    formRef.current?.reset();
-  };
-
+function SocialSection() {
+  const socials = [
+    { label: 'Instagram', href: 'https://www.instagram.com/', icon: Instagram },
+    { label: 'Facebook', href: 'https://www.facebook.com/', icon: Facebook },
+    { label: 'YouTube', href: 'https://www.youtube.com/', icon: Youtube },
+  ];
   return (
     <section id="connect" className="section-pad bg-[hsl(29_20%_9%)]">
-      <div className="mx-auto grid max-w-[1240px] gap-16 lg:grid-cols-[.8fr_1.2fr] lg:gap-28">
+      <div className="mx-auto grid max-w-[1240px] gap-14 lg:grid-cols-[.8fr_1.2fr] lg:gap-28">
         <div>
-          <SectionLabel number="05">Begin a conversation</SectionLabel>
-          <h2 className="display text-6xl leading-[.92] sm:text-8xl" data-testid="text-contact-title">Start where<br /><em className="gold-text">you are.</em></h2>
-          <p className="mt-8 max-w-[20rem] text-sm leading-7 text-[hsl(var(--foreground)/.58)]">No polished pitch required. Tell us what you are making, leading, or discerning — and we will take the next step from there.</p>
-          <div className="mt-12 border-l border-[hsl(var(--primary)/.55)] pl-5"><p className="serif text-2xl italic text-[hsl(var(--primary))]">Come as you are. Come ready to listen.</p></div>
+          <SectionLabel number="05">Follow the sound</SectionLabel>
+          <h2 className="display text-6xl leading-[.92] sm:text-8xl" data-testid="text-social-title">Keep<br /><em className="gold-text">listening.</em></h2>
+          <p className="mt-8 max-w-[20rem] text-sm leading-7 text-[hsl(var(--foreground)/.58)]">Stay close to the work, the worship, and the wisdom. Follow along wherever the sound is moving.</p>
+          <div className="mt-12 border-l border-[hsl(var(--primary)/.55)] pl-5"><p className="serif text-2xl italic text-[hsl(var(--primary))]">Come as you are. Keep your ears open.</p></div>
         </div>
-        <div>
-          {submitted ? (
-            <div className="flex min-h-[22rem] flex-col justify-center border border-[hsl(var(--primary)/.45)] bg-[hsl(var(--primary)/.06)] p-8" role="status" data-testid="status-contact-success"><Check size={26} className="text-[hsl(var(--primary))]" /><h3 className="display mt-6 text-4xl">Received with care.</h3><p className="mt-4 max-w-[25rem] text-sm leading-7 text-[hsl(var(--foreground)/.62)]">Your note is ready for the next faithful step. We look forward to continuing the conversation.</p><button type="button" onClick={() => setSubmitted(false)} className="focus-ring mt-8 w-fit font-mono text-[.65rem] uppercase tracking-[.15em] text-[hsl(var(--primary))]" data-testid="button-contact-reset">Send another note <ChevronRight size={14} className="inline" /></button></div>
-          ) : (
-            <form ref={formRef} onSubmit={handleSubmit} className="border-t border-[hsl(var(--border))]" noValidate>
-              <label className="block border-b border-[hsl(var(--border))] py-5"><span className="eyebrow block mb-3 text-[hsl(var(--foreground)/.47)]">01 / your name</span><input name="name" type="text" autoComplete="name" className="input-line w-full py-2 text-lg text-[hsl(var(--foreground))] placeholder:text-[hsl(var(--foreground)/.25)]" placeholder="What should we call you?" data-testid="input-contact-name" /></label>
-              <label className="block border-b border-[hsl(var(--border))] py-5"><span className="eyebrow block mb-3 text-[hsl(var(--foreground)/.47)]">02 / your email</span><input name="email" type="email" autoComplete="email" className="input-line w-full py-2 text-lg text-[hsl(var(--foreground))] placeholder:text-[hsl(var(--foreground)/.25)]" placeholder="Where can we reach you?" data-testid="input-contact-email" /></label>
-              <label className="block border-b border-[hsl(var(--border))] py-5"><span className="eyebrow block mb-3 text-[hsl(var(--foreground)/.47)]">03 / your movement</span><textarea name="message" rows={4} className="input-line w-full resize-none py-2 text-lg text-[hsl(var(--foreground))] placeholder:text-[hsl(var(--foreground)/.25)]" placeholder="Tell us what you're making, leading, or discerning." data-testid="input-contact-message" /></label>
-              {error && <p className="mt-4 text-sm text-[hsl(var(--accent))]" role="alert" data-testid="status-contact-error">{error}</p>}
-              <button type="submit" className="focus-ring mt-8 flex items-center gap-3 bg-[hsl(var(--primary))] px-6 py-4 text-[.7rem] font-bold uppercase tracking-[.15em] text-[hsl(var(--primary-foreground))] transition-transform hover:-translate-y-1" data-testid="button-contact-submit">Send the note <ArrowUpRight size={16} /></button>
-            </form>
-          )}
+        <div className="grid gap-4 sm:grid-cols-3">
+          {socials.map(({ label, href, icon: Icon }) => (
+            <a key={label} href={href} target="_blank" rel="noreferrer" className="service-card focus-ring group flex min-h-[14rem] flex-col justify-between border border-[hsl(var(--border))] bg-[hsl(var(--card))] p-6" data-testid={`link-social-${label.toLowerCase()}`}>
+              <Icon size={24} strokeWidth={1.25} className="text-[hsl(var(--primary))]" />
+              <span className="flex items-center justify-between gap-4 text-lg text-[hsl(var(--foreground)/.84)]">{label}<ArrowUpRight size={16} className="text-[hsl(var(--primary)/.75)] transition-transform group-hover:translate-x-1 group-hover:-translate-y-1" /></span>
+            </a>
+          ))}
         </div>
       </div>
     </section>
@@ -365,7 +346,7 @@ function Footer() {
 }
 
 function Home() {
-  return <div id="page" className="grain min-h-[100dvh] bg-[hsl(var(--background))] text-[hsl(var(--foreground))]"><Header /><main><Hero /><WhySection /><OriginSection /><WaysSection /><PracticeSection /><MovementSection /><Invitation /><ContactSection /></main><Footer /></div>;
+  return <div id="page" className="grain min-h-[100dvh] bg-[hsl(var(--background))] text-[hsl(var(--foreground))]"><Header /><main><Hero /><WhySection /><OriginSection /><WaysSection /><PracticeSection /><MovementSection /><Invitation /><SocialSection /></main><Footer /></div>;
 }
 
 function Router() {
