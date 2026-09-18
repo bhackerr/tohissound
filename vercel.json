@@ -1,4 +1,4 @@
 {
   "outputDirectory": "dist/public",
-"rewrites": [f "source": "/(.*)", "destination": "/index.htmI"
+"rewrites": [{"source": "/(.*)", "destination": "/index.html"}]
   }
