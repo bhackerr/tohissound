@@ -5,6 +5,8 @@
     "tsBuildInfoFile": ".tsbuildinfo",
     "outDir": "dist",
     "rootDir": "src",
+    "noEmit": false,
+    "emitDeclarationOnly": false,
     "types": ["node"]
   },
   "include": ["src"],
