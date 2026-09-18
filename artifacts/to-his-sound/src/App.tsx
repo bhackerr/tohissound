@@ -1,6 +1,6 @@
 import { type ReactNode, useEffect, useState } from 'react';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import { ArrowDownRight, ArrowUpRight, ChevronRight, Circle, Facebook, Instagram, Menu, MoveUpRight, X } from 'lucide-react';
+import { ArrowDownRight, ArrowUpRight, ChevronRight, Circle, Facebook, Instagram, Mail, Menu, MoveUpRight, X } from 'lucide-react';
 import { ErrorBoundary } from '@/components/error-boundary';
 import { Toaster } from '@/components/ui/toaster';
 import { TooltipProvider } from '@/components/ui/tooltip';
@@ -308,8 +308,9 @@ function Invitation() {
 
 function SocialSection() {
   const socials = [
-    { label: 'Instagram', href: 'https://www.instagram.com/', icon: Instagram },
-    { label: 'Facebook', href: 'https://www.facebook.com/', icon: Facebook },
+    { label: 'Instagram', detail: '@tohissound', href: 'https://www.instagram.com/tohissound/', icon: Instagram },
+    { label: 'Facebook', detail: 'To His Sound Dance', href: 'https://www.facebook.com/ToHisSoundDance', icon: Facebook },
+    { label: 'Email', detail: 'tohissound@gmail.com', href: 'mailto:tohissound@gmail.com', icon: Mail },
   ];
   return (
     <section id="connect" className="section-pad bg-[hsl(29_20%_9%)]">
@@ -321,10 +322,10 @@ function SocialSection() {
           <div className="mt-12 border-l border-[hsl(var(--primary)/.55)] pl-5"><p className="serif text-2xl italic text-[hsl(var(--primary))]">Come as you are. Keep your ears open.</p></div>
         </div>
         <div className="grid gap-4 sm:grid-cols-3">
-          {socials.map(({ label, href, icon: Icon }) => (
+          {socials.map(({ label, detail, href, icon: Icon }) => (
             <a key={label} href={href} target="_blank" rel="noreferrer" className="service-card focus-ring group flex min-h-[14rem] flex-col justify-between border border-[hsl(var(--border))] bg-[hsl(var(--card))] p-6" data-testid={`link-social-${label.toLowerCase()}`}>
               <Icon size={24} strokeWidth={1.25} className="text-[hsl(var(--primary))]" />
-              <span className="flex items-center justify-between gap-4 text-lg text-[hsl(var(--foreground)/.84)]">{label}<ArrowUpRight size={16} className="text-[hsl(var(--primary)/.75)] transition-transform group-hover:translate-x-1 group-hover:-translate-y-1" /></span>
+              <span className="flex items-end justify-between gap-4"><span><span className="block text-lg text-[hsl(var(--foreground)/.84)]">{label}</span><span className="mt-2 block break-words text-xs leading-5 text-[hsl(var(--foreground)/.48)]">{detail}</span></span><ArrowUpRight size={16} className="mb-1 shrink-0 text-[hsl(var(--primary)/.75)] transition-transform group-hover:translate-x-1 group-hover:-translate-y-1" /></span>
             </a>
           ))}
         </div>
